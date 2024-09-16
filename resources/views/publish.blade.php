@@ -138,9 +138,76 @@
             display: flex;
             flex-direction: row;
         }
+        
+            /* Base styles for the loading screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9999; /* Ensure it's on top of everything */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    overflow: hidden; /* To hide overflow during animations */
+    pointer-events: none; /* Prevents clicks while hidden */
+}
+
+.loading-screen.show {
+    opacity: 1;
+    pointer-events: auto; /* Allows clicks while visible */
+}
+
+/* Spinner styles */
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.3); /* Light grey */
+    border-top: 8px solid #ff6f61; /* Orange color */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite, pulse 2s ease-in-out infinite; /* Added pulse animation */
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Keyframes for pulse animation */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Text styles */
+.loading-text {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6f61; /* Orange color */
+    animation: fadeInOut 2s ease-in-out infinite; /* Added fade-in and fade-out animation */
+}
+
+/* Keyframes for text fade animation */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
     </style>
 </head>
 <body>
+<div id="loading-screen" class="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">ComicVERSE</div>
+    </div>
     <header>
         <div class="header-container">
             <h1>ComicVERSE</h1>
@@ -189,5 +256,34 @@
             </form>
         </div>
     </main>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var loadingScreen = document.getElementById('loading-screen');
+
+        // Function to show loading screen
+        function showLoadingScreen() {
+            loadingScreen.classList.add('show');
+            setTimeout(function() {
+                loadingScreen.classList.remove('show');
+            }, 2000); // 2 seconds delay
+        }
+
+        // Show loading screen on page load
+        showLoadingScreen();
+
+        // Show loading screen on page transition
+        document.querySelectorAll('a').forEach(function(anchor) {
+            anchor.addEventListener('click', function(event) {
+                if (this.getAttribute('href') !== '#' && !this.getAttribute('href').startsWith('http')) {
+                    event.preventDefault(); // Prevent default navigation
+                    showLoadingScreen();
+                    setTimeout(function() {
+                        window.location.href = anchor.getAttribute('href');
+                    }, 2000); // Delay navigation for 2 seconds
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
