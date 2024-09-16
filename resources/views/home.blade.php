@@ -191,7 +191,18 @@
                 @if (Route::has('login'))
                 <nav>
                     @auth
+                    @if (auth()->user()->role=='admin')
                         <a href="{{ url('/dashboard') }}">Dashboard</a>
+                        @endif
+                        <a href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+        
                     @else
                         <a href="{{ route('login') }}">Log in</a>
                         @if (Route::has('register'))
