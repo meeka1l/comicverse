@@ -32,10 +32,19 @@
         }
 
         nav a {
+            
+            display: inline-block;
+            padding: 10px 20px;
+            border: #ff6f61;
             color: white;
+            border-radius: 5px;
             text-decoration: none;
-            margin: 0 10px;
             font-weight: bold;
+            text-transform: uppercase;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        
         }
 
         nav a:hover {
@@ -56,6 +65,7 @@
             position: relative;
             overflow: hidden;
         }
+
 
         .publish-button::before {
             content: "";
@@ -123,6 +133,10 @@
             background: linear-gradient(45deg, #ff8c00, #ff6f61); /* Inverse gradient on hover */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
             transform: scale(1.05); /* Slight scale effect */
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
         }
     </style>
 </head>
