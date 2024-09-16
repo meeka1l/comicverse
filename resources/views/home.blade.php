@@ -182,6 +182,47 @@
             .banner-content h2{
                 font-weight: bolder;
             }
+            .publish-button {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff8c00, #ffa500); /* Orange gradient background */
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: all 0.4s ease-in-out; /* Smooth transition for all properties */
+    position: relative;
+    overflow: hidden;
+}
+
+.publish-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2); /* Light overlay */
+    transition: all 0.5s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.publish-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.publish-button:hover {
+    background: linear-gradient(45deg, #ffa500, #ff8c00); /* Inverse gradient on hover */
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transform: scale(1.1); /* Slight scale effect */
+}
+
+
         </style>
     </head>
     <body>
@@ -194,6 +235,9 @@
                     @if (auth()->user()->role=='admin')
                         <a href="{{ url('/dashboard') }}">Dashboard</a>
                         @endif
+                        <a href="{{ url('/publish') }}" class="publish-button">
+                            Publish
+                        </a>
                         <a href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}

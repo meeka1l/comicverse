@@ -21,3 +21,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');
+
+Route::get('/publish', function () {
+    return view('publish'); // Assuming you have a Blade view named 'publish.blade.php'
+})->name('publish');
+
