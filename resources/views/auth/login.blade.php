@@ -2,7 +2,6 @@
 
     <x-authentication-card>
         <x-slot name="logo">
-          
             <x-authentication-card-logo />
         </x-slot>
 
@@ -44,6 +43,13 @@
                 <x-button class="ms-4">
                     {{ __('Log in') }}
                 </x-button>
+            </div>
+
+            <!-- New? Register link -->
+            <div class="flex items-center justify-end mt-4">
+                <a href="{{ route('register') }}" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {{ __('New? Register') }}
+                </a>
             </div>
         </form>
     </x-authentication-card>

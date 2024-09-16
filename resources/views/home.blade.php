@@ -4,13 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>ComicVerse</title>
+        <title>ComicVERSE</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
         <style>
             body {
                 font-family: 'Figtree', sans-serif;
@@ -23,7 +24,7 @@
                 font-family: 'Anton', sans-serif;
                 font-size: 3em;
                 font-weight: bolder;
-                color: #ffc09a;
+                color: #ffd1b4;
             }
             .container {
                 width: 100%;
@@ -33,7 +34,7 @@
             header {
                 width: 100%;
                 padding: 16px 0;
-                background-color: #F59E0B;
+                background-color: #ff8d13;
                 color: white;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
@@ -41,6 +42,9 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+            }
+            .header-container a{
+                font-family: 'Krona One';
             }
             nav a {
                 margin-left: 16px;
@@ -120,6 +124,11 @@
                 border-radius: 8px;
                 padding: 16px;
                 text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card:hover {
+                transform: scale(1.05); /* Pop out effect */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
             }
             .card img {
                 width: 100%;
@@ -166,6 +175,12 @@
             }
             footer ul li a:hover {
                 color: white;
+            }
+            .banner-content p{
+                font-weight: bolder;
+            }
+            .banner-content h2{
+                font-weight: bolder;
             }
         </style>
     </head>
