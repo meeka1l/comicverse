@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {

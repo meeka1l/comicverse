@@ -340,69 +340,21 @@
                 </div>
             </div>
 
-            <!-- Trending Section -->
-            <section>
-                <h3 class="section-title">Trending</h3>
-                <div class="grid">
-                    <div class="card">
-                        <img src="../../build/images/kagurabachi1.webp" alt="Kagurabachi.vol1">
-                        <h4>Kagurabachi.Vol1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/spawn1.webp" alt="SpawnIssue1">
-                        <h4>SpawnIssue1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/bluelock1.jpg" alt="Blue Lock.Vol1">
-                        <h4>Blue Lock.Vol1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/ronin.webp" alt="The Last Ronin.Issue1">
-                        <h4>The Last Ronin.Issue1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/onepiece.jpg" alt="One Piece.vol108">
-                        <h4>One Piece.Vol108</h4>
-                        <p>$10.99</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Bestsellers Section -->
-            <section>
-                <h3 class="section-title">Bestsellers</h3>
-                <div class="grid">
-                    <div class="card">
-                        <img src="../../build/images/kagurabachi1.webp" alt="Kagurabachi.vol1">
-                        <h4>Kagurabachi.Vol1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/spawn1.webp" alt="SpawnIssue1">
-                        <h4>SpawnIssue1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/bluelock1.jpg" alt="Blue Lock.Vol1">
-                        <h4>Blue Lock.Vol1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/ronin.webp" alt="The Last Ronin.Issue1">
-                        <h4>The Last Ronin.Issue1</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/onepiece.jpg" alt="One Piece.vol108">
-                        <h4>One Piece.Vol108</h4>
-                        <p>$10.99</p>
-                    </div>
-                </div>
-            </section>
+          
+   <!-- Trending Section -->
+<section>
+    <h3 class="section-title">Trending</h3>
+    <div class="grid">
+        @foreach ($trendingBooks as $book)
+            <div class="card">
+                <!-- Display the image by encoding the binary data as base64 -->
+                <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->title }}">
+                <h4>{{ $book->title }}</h4>
+                <p>${{ number_format($book->price, 2) }}</p>
+            </div>
+        @endforeach
+    </div>
+</section>
 
             <!-- Classics Section -->
             <section>
@@ -435,6 +387,21 @@
                     </div>
                 </div>
             </section>
+
+            <!-- All Books Section -->
+<section>
+    <h3 class="section-title">All Books</h3>
+    <div class="grid">
+        @foreach ($allBooks as $book)
+            <div class="card">
+            <!-- Display the image by encoding the binary data as base64 -->
+            <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->title }}">   
+            <h4>{{ $book->title }}</h4>
+                <p>${{ number_format($book->price, 2) }}</p>
+            </div>
+        @endforeach
+    </div>
+</section>
         </main>
 
         <footer>
