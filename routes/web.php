@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -27,3 +29,8 @@ Route::get('/publish', function () {
     return view('publish'); // Assuming you have a Blade view named 'publish.blade.php'
 })->name('publish');
 
+Route::put('/books/update', [BookController::class, 'update'])->name('books.update');
+Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
+
+Route::resource('books', BookController::class);
+Route::resource('users', UserController::class);

@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link href="{{ route('crud') }}" :active="request()->routeIs('crud')">
-                        {{ __('CRUD Operations') }}
+                        {{ __('Manage') }}
                     </x-nav-link>
                 </div>
             </div>
