@@ -32,5 +32,12 @@ Route::get('/publish', function () {
 Route::put('/books/update', [BookController::class, 'update'])->name('books.update');
 Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
 
+// For Books delete
+Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+
+// For Users delete
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+
 Route::resource('books', BookController::class);
 Route::resource('users', UserController::class);

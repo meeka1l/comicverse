@@ -49,4 +49,13 @@ $book->update([
         $book = Book::find($id);
         return response()->json($book);
     }
+
+    public function destroy($id)
+{
+    $book = Book::findOrFail($id);
+    $book->delete();
+
+    return redirect()->back()->with('success', 'Book deleted successfully!');
+}
+
 }

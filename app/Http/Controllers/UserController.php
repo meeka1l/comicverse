@@ -34,4 +34,13 @@ class UserController extends Controller
         $user = User::find($id);
         return response()->json($user);
     }
+
+    public function destroy($id)
+{
+    $user = User::findOrFail($id);
+    $user->delete();
+
+    return redirect()->back()->with('success', 'User deleted successfully!');
+}
+
 }

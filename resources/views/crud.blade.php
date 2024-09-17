@@ -41,6 +41,12 @@
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                     <!-- Edit Button -->
                                     <button class="bg-blue-500 text-white py-1 px-3 rounded" onclick="toggleEditForm({{ $book->id }})">Edit</button>
+                                     <!-- Delete Button -->
+                                <form method="POST" action="{{ route('books.destroy', $book->id) }}" style="display:inline;" onsubmit="return confirmDelete();">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded">Delete</button>
+                                </form>
                                 </td>
                             </tr>
                             <tr id="edit-form-{{ $book->id }}" style="display:none;">
@@ -116,6 +122,13 @@
                                 <td class="px-6 py-4 text-sm text-gray-500">
                                     <!-- Edit Button -->
                                     <button class="bg-blue-500 text-white py-1 px-3 rounded" onclick="toggleEditUserForm({{ $user->id }})">Edit</button>
+                                
+                                 <!-- Delete Button -->
+                                <form method="POST" action="{{ route('users.destroy', $user->id) }}" style="display:inline;" onsubmit="return confirmDelete();">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white py-1 px-3 rounded">Delete</button>
+                                </form>
                                 </td>
                             </tr>
                             <tr id="edit-user-form-{{ $user->id }}" style="display:none;">
@@ -158,5 +171,9 @@
             const form = document.getElementById(`edit-user-form-${id}`);
             form.style.display = form.style.display === 'none' ? 'table-row' : 'none';
         }
+
+        function confirmDelete() {
+        return confirm('Are you sure you want to delete this item? This action cannot be undone.');
+    }
     </script>
 </x-app-layout>
