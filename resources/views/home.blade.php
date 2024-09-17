@@ -358,35 +358,18 @@
 
             <!-- Classics Section -->
             <section>
-                <h3 class="section-title">Classics</h3>
-                <div class="grid">
-                    <div class="card">
-                        <img src="../../build/images/spiderman_classic.jpg" alt="Spiderman Classic">
-                        <h4>Spiderman Classic</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/batman_classic.webp" alt="Batman Classic">
-                        <h4>Batman Classic</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/superman_classic.webp" alt="Superman Classic">
-                        <h4>Superman Classic</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/hulk_classic.webp" alt="Hulk Classic">
-                        <h4>Hulk Classic</h4>
-                        <p>$10.99</p>
-                    </div>
-                    <div class="card">
-                        <img src="../../build/images/ironman_classic.jpg" alt="Ironman Classic">
-                        <h4>Ironman Classic</h4>
-                        <p>$10.99</p>
-                    </div>
-                </div>
-            </section>
+    <h3 class="section-title">Classics</h3>
+    <div class="grid">
+        @foreach ($classicBooks as $book)
+            <div class="card">
+                <!-- Display the image by encoding the binary data as base64 -->
+                <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->title }}">
+                <h4>{{ $book->title }}</h4>
+                <p>${{ number_format($book->price, 2) }}</p>
+            </div>
+        @endforeach
+    </div>
+</section>
 
             <!-- All Books Section -->
 <section>

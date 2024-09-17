@@ -9,8 +9,9 @@ class HomeController extends Controller
     public function index()
     {
         $trendingBooks = Book::where('trending', true)->get(); // Fetch trending books
+        $classicBooks = Book::where('classic', true)->get(); // Fetch classic books
         $allBooks = Book::all(); // Fetch all books
-        return view('home', compact('trendingBooks', 'allBooks'));     
+        return view('home', compact('trendingBooks', 'allBooks','classicBooks'));     
     }
 
     public function store(Request $request)
