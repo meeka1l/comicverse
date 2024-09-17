@@ -12,7 +12,54 @@
                 <!-- Books Management -->
                 <div class="mb-8">
                     <h4 class="text-md font-semibold mb-2">Manage Books</h4>
-                    
+                    <!-- Button to Open Add Book Form -->
+<div class="mb-4">
+    <button id="open-add-book-form" class="bg-green-500 text-white py-2 px-4 rounded">Add New Book</button>
+</div>
+
+<!-- Add Book Form (Initially Hidden) -->
+<div id="add-book-form" class="hidden mb-8">
+    <h4 class="text-md font-semibold mb-2">Add New Book</h4>
+    <form method="POST" action="{{ route('books.store') }}">
+        @csrf
+        <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+            <input type="text" id="title" name="title" class="mt-1 block w-full" required>
+        </div>
+        <div class="mb-4">
+            <label for="author" class="block text-sm font-medium text-gray-700">Author</label>
+            <input type="text" id="author" name="author" class="mt-1 block w-full" required>
+        </div>
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea id="description" name="description" class="mt-1 block w-full"></textarea>
+        </div>
+        <div class="mb-4">
+            <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+            <input type="number" id="price" name="price" step="0.01" class="mt-1 block w-full" required>
+        </div>
+        <div class="mb-4">
+            <label for="stock" class="block text-sm font-medium text-gray-700">Stock</label>
+            <input type="number" id="stock" name="stock" class="mt-1 block w-full" required>
+        </div>
+        <div class="mb-4">
+            <label for="trending" class="inline-flex items-center">
+                <input type="hidden" name="trending" value="0">
+                <input type="checkbox" id="trending" name="trending" class="form-checkbox">
+                <span class="ml-2">Trending</span>
+            </label>
+        </div>
+        <div class="mb-4">
+            <label for="classic" class="inline-flex items-center">
+                <input type="hidden" name="trending" value="0">
+                <input type="checkbox" id="classic" name="classic" class="form-checkbox">
+                <span class="ml-2">Classic</span>
+            </label>
+        </div>
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Add Book</button>
+    </form>
+</div>
+
                     <!-- Display Books -->
                     <table class="min-w-full divide-y divide-gray-200 mb-6">
                         <thead>
@@ -101,7 +148,35 @@
                 <!-- Users Management -->
                 <div>
                     <h4 class="text-md font-semibold mb-2">Manage Users</h4>
-                    
+                    <!-- Button to Open Add User Form -->
+<div class="mb-4">
+    <button id="open-add-user-form" class="bg-green-500 text-white py-2 px-4 rounded">Add New User</button>
+</div>
+
+<!-- Add User Form (Initially Hidden) -->
+<div id="add-user-form" class="hidden mb-8">
+    <h4 class="text-md font-semibold mb-2">Add New User</h4>
+    <form method="POST" action="{{ route('users.store') }}">
+        @csrf
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" id="name" name="name" class="mt-1 block w-full" required>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" id="email" name="email" class="mt-1 block w-full" required>
+        </div>
+        <div class="mb-4">
+            <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+            <input type="text" id="role" name="role" class="mt-1 block w-full" required>
+        </div>
+
+        <p>Defualt Password: password</p>
+        
+        <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Add User</button>
+    </form>
+</div>
+
                     <!-- Display Users -->
                     <table class="min-w-full divide-y divide-gray-200 mb-6">
                         <thead>
@@ -174,5 +249,30 @@
         function confirmDelete() {
         return confirm('Are you sure you want to delete this item? This action cannot be undone.');
     }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Get the buttons and forms
+        const addBookButton = document.getElementById('open-add-book-form');
+        const addBookForm = document.getElementById('add-book-form');
+        
+        const addUserButton = document.getElementById('open-add-user-form');
+        const addUserForm = document.getElementById('add-user-form');
+        
+        // Toggle form visibility
+        addBookButton.addEventListener('click', () => {
+            if (addBookForm.classList.contains('hidden')) {
+                addBookForm.classList.remove('hidden');
+            } else {
+                addBookForm.classList.add('hidden');
+            }
+        });
+
+        addUserButton.addEventListener('click', () => {
+            if (addUserForm.classList.contains('hidden')) {
+                addUserForm.classList.remove('hidden');
+            } else {
+                addUserForm.classList.add('hidden');
+            }
+        });
+    });
     </script>
 </x-app-layout>

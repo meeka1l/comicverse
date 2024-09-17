@@ -58,4 +58,30 @@ $book->update([
     return redirect()->back()->with('success', 'Book deleted successfully!');
 }
 
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'author' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'price' => 'required|numeric|min:0',
+        'stock' => 'required|integer|min:0',
+        'trending' => 'nullable|boolean',
+        'classic' => 'nullable|boolean',
+    ]);
+
+    Book::create([
+        'title' => $request->input('title'),
+        'author' => $request->input('author'),
+        'description' => $request->input('description'),
+        'price' => $request->input('price'),
+        'stock' => $request->input('stock'),
+        'trending' => $request->has('trending'),
+        'classic' => $request->has('classic'),
+    ]);
+
+    return redirect()->back()->with('success', 'Book added successfully!');
+}
+
+
 }

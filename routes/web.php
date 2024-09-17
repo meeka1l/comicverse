@@ -29,14 +29,17 @@ Route::get('/publish', function () {
     return view('publish'); // Assuming you have a Blade view named 'publish.blade.php'
 })->name('publish');
 
+// For edit
 Route::put('/books/update', [BookController::class, 'update'])->name('books.update');
 Route::put('/users/update', [UserController::class, 'update'])->name('users.update');
 
-// For Books delete
+// For delete
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
-
-// For Users delete
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+// For add
+Route::post('/books', [BookController::class, 'store'])->name('books.store');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 
 Route::resource('books', BookController::class);

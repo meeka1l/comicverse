@@ -59,7 +59,6 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'string', // Corrected: Change 'hashed' to 'string'
         ];
     }
 }

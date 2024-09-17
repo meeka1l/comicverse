@@ -43,4 +43,22 @@ class UserController extends Controller
     return redirect()->back()->with('success', 'User deleted successfully!');
 }
 
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'role' => 'required|string|max:255',
+    ]);
+
+    User::create([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'role' => $request->input('role'),
+    ]);
+
+    return redirect()->back()->with('success', 'User added successfully!');
+}
+
+
 }
