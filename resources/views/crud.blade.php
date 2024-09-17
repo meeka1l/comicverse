@@ -69,18 +69,21 @@
                                             <label for="stock" class="block text-sm font-medium text-gray-700">Stock</label>
                                             <input type="number" id="stock" name="stock" value="{{ $book->stock }}" class="mt-1 block w-full">
                                         </div>
-                                        <!-- <div class="mb-4">
+                                        <div class="mb-4">
                                             <label for="trending" class="inline-flex items-center">
-                                                <input type="checkbox" id="trending" name="trending" {{ $book->trending ? 'checked' : '' }} class="form-checkbox">
+                                                <input type="hidden" name="trending" value="0"> <!-- Always sends a value -->
+                                                <input type="checkbox" id="trending" name="trending" value="1" {{ $book->trending ? 'checked' : '' }} class="form-checkbox">
                                                 <span class="ml-2">Trending</span>
                                             </label>
                                         </div>
+
                                         <div class="mb-4">
                                             <label for="classic" class="inline-flex items-center">
-                                                <input type="checkbox" id="classic" name="classic" {{ $book->classic ? 'checked' : '' }} class="form-checkbox">
+                                                <input type="hidden" name="classic" value="0"> <!-- Always sends a value -->
+                                                <input type="checkbox" id="classic" name="classic" value="1" {{ $book->classic ? 'checked' : '' }} class="form-checkbox">
                                                 <span class="ml-2">Classic</span>
                                             </label>
-                                        </div> -->
+                                        </div>
                                         <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Update Book</button>
                                     </form>
                                 </td>

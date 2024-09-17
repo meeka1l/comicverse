@@ -36,8 +36,8 @@ $book->update([
     'description' => $request->input('description'),
     'price' => $request->input('price'),
     'stock' => $request->input('stock'),
-    // 'trending' => $request->boolean('trending'),  // Use boolean() to handle true/false properly
-    // 'classic' => $request->boolean('classic'),    // Same here for 'classic'
+    'trending' => $request->boolean('trending'),  // Use boolean() to handle true/false properly
+    'classic' => $request->boolean('classic'),    // Same here for 'classic'
 ]);
 
     return redirect()->back()->with('success', 'Book updated successfully!');
