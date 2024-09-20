@@ -20,7 +20,7 @@
 <!-- Add Book Form (Initially Hidden) -->
 <div id="add-book-form" class="hidden mb-8">
     <h4 class="text-md font-semibold mb-2">Add New Book</h4>
-    <form method="POST" action="{{ route('books.store') }}">
+    <form method="POST" action="{{ route('books.storeAdmin') }}">
         @csrf
         <div class="mb-4">
             <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
@@ -36,23 +36,23 @@
         </div>
         <div class="mb-4">
             <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-            <input type="number" id="price" name="price" step="0.01" class="mt-1 block w-full" required>
+            <input type="number" id="price" name="price" step="0.01" class="mt-1 block w-full" max="99999" required>
         </div>
         <div class="mb-4">
             <label for="stock" class="block text-sm font-medium text-gray-700">Stock</label>
-            <input type="number" id="stock" name="stock" class="mt-1 block w-full" required>
+            <input type="number" id="stock" name="stock" class="mt-1 block w-full" max="99999999999" required>
         </div>
         <div class="mb-4">
             <label for="trending" class="inline-flex items-center">
-                <input type="hidden" name="trending" value="0">
-                <input type="checkbox" id="trending" name="trending" class="form-checkbox">
+                <!-- <input type="hidden" name="trending" value="0"> -->
+                <input type="checkbox" id="trending" name="trending" class="form-checkbox" value="0">
                 <span class="ml-2">Trending</span>
             </label>
         </div>
         <div class="mb-4">
             <label for="classic" class="inline-flex items-center">
-                <input type="hidden" name="trending" value="0">
-                <input type="checkbox" id="classic" name="classic" class="form-checkbox">
+                <!-- <input type="hidden" name="classic" value="0"> -->
+                <input type="checkbox" id="classic" name="classic" class="form-checkbox" value="0">
                 <span class="ml-2">Classic</span>
             </label>
         </div>

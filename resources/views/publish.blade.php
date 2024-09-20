@@ -230,32 +230,44 @@
             <h1>Publish Your Work</h1>
             <p>Submit your latest comic or manga to share with the world!</p>
         </header>
+        <div>
+    <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
+        @csrf
 
         <div>
-            <form method="POST" action="{{ route('publish') }}" enctype="multipart/form-data">
-                @csrf
-
-                <div>
-                    <label for="title">Title</label>
-                    <input id="title" name="title" type="text" required />
-                </div>
-
-                <div>
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" rows="4" required></textarea>
-                </div>
-
-                <div>
-                    <label for="image">Cover Image</label>
-                    <input id="image" name="image" type="file" />
-                </div>
-
-                <div>
-                    <button type="submit">Publish</button>
-                </div>
-            </form>
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" required />
         </div>
-    </main>
+
+        <div>
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input id="price" name="price" type="number" step="0.01" max="99999" maxlength="" required />
+        </div>
+
+        <div>
+            <label for="stock">Stock</label>
+            <input id="stock" name="stock" type="number" max="99999999999" required />
+        </div>
+
+        <div>
+            <label for="image">Cover Image</label>
+            <input id="image" name="image" type="file" />
+        </div>
+
+       
+
+        <div>
+            <button type="submit">Publish</button>
+        </div>
+    </form>
+</div>
+
+           </main>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         var loadingScreen = document.getElementById('loading-screen');

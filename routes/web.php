@@ -39,6 +39,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 
 // For add
 Route::post('/books', [BookController::class, 'store'])->name('books.store');
+Route::post('/books/storeAdmin', [BookController::class, 'storeAdmin'])->name('books.storeAdmin');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 
