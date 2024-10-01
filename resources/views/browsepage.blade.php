@@ -64,9 +64,6 @@
                 padding: 32px;
             }
             .header-search {
-                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1) 100%),  url('../../build/images/climber_manga.jpeg'); /* Path to your background image */
-    background-size: cover; /* Cover the entire div */
-    background-position: center; /* Center the background image */  
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -93,14 +90,67 @@
             cursor: pointer;
             font-size: 1rem;
         }
-       
+       .browsebanner{
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1) 100%),  url('../../build/images/climber_manga.jpeg'); /* Path to your background image */
+    background-size: cover; /* Cover the entire div */
+    background-position: center; /* Center the background image */  
+    margin-top: 0;
+       }
+       .header-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the header and navigation */
+    align-items: center; /* Center items vertically */
+}
+
+.upperheader {
+    margin-top: 0;
+    color: white;
+    padding-top: 2%;
+    padding-left: 2%;
+    font-family: 'Krona One';
+}
+
+.uppernavigation {
+    margin-top: 0;
+    margin-right: 2%; /* Add some right margin for spacing */
+    color: white;
+    font: 'Krona One';
+}
+
+.uppernavigation h2 {
+    display: inline; /* Keep the items inline */
+    margin-left: 8px; /* Add space between Home and Logout */
+    cursor: pointer; /* Change the cursor to pointer for interactivity */
+    
+}
+.uppernavigation a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* Set text color to white */
+}
         </style>
 </head>
 <body>
+    <div class="browsebanner">
+
+    <div class="header-container">
+    <h2 class="upperheader">ComicVERSE</h2>
+    <div class="uppernavigation">
+    <a href="{{ route('home') }}">
+            <h2>Home</h2>
+        </a>
+        <h2>|</h2>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <h2>Logout</h2>
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </div>
+</div>
 
     <div class="header-search">
     
-
+            
             <h1>Browse Catalogue</h1>
             
             <!-- Search Form -->
@@ -108,6 +158,7 @@
                 <input type="text" name="search" placeholder="Search by title or author..." value="{{ request()->query('search') }}">
                 <button type="submit">Search</button>
             </form>
+        </div>
         </div>
         <main class="main-section">
      <!-- All Books Section -->
