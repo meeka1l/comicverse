@@ -6,6 +6,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\browseController;
 
 Route::get('/', function () {
     return view('home');
@@ -45,3 +46,5 @@ Route::post('/users', [UserController::class, 'store'])->name('users.store');
 
 Route::resource('books', BookController::class);
 Route::resource('users', UserController::class);
+
+Route::get('/browse', [browseController::class, 'index'])->name('browse');

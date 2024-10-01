@@ -336,7 +336,7 @@
                 <div class="banner-content">
                     <h2>ComicVERSE</h2>
                     <p>The ultimate hub for comic and manga!</p>
-                    <a href="#">Browse</a>
+                    <a href="{{route('browse')}}">Browse</a>
                 </div>
             </div>
 
