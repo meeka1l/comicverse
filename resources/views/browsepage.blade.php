@@ -56,42 +56,52 @@
             }
             h1 {
                 font-family: 'Anton', sans-serif;
-                font-size: 3em;
+                font-size: 5em;
                 font-weight: bolder;
-                color: #ffd1b4;
+                color: white;
             }
             .main-section {
                 padding: 32px;
             }
             .header-search {
+                background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1) 100%),  url('../../build/images/climber_manga.jpeg'); /* Path to your background image */
+    background-size: cover; /* Cover the entire div */
+    background-position: center; /* Center the background image */  
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 5%;
         }
         .search-form {
             display: flex;
             align-items: center;
+            
         }
         .search-form input[type="text"] {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
             margin-right: 8px;
+            width: 700px; /* Increase the width to make the search bar wider */
         }
         .search-form button {
             padding: 8px 16px;
-            background-color: #ffd1b4;
+            color: white;
+            background-color: #ff8d13;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 1rem;
         }
+       
         </style>
 </head>
 <body>
-<main class="main-section">
+
     <div class="header-search">
-            <h1>Browse Page</h1>
+    
+
+            <h1>Browse Catalogue</h1>
             
             <!-- Search Form -->
             <form class="search-form" method="GET" action="{{ route('browse') }}">
@@ -99,6 +109,7 @@
                 <button type="submit">Search</button>
             </form>
         </div>
+        <main class="main-section">
      <!-- All Books Section -->
 <section>
     <h3 class="section-title">All Books</h3>
@@ -109,6 +120,7 @@
             <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->title }}">   
             <h4>{{ $book->title }}</h4>
                 <p>${{ number_format($book->price, 2) }}</p>
+                <p>{{$book->author}}</p>
             </div>
         @endforeach
     </div>
