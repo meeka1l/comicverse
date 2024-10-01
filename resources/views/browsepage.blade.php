@@ -112,7 +112,9 @@
         <main class="main-section">
      <!-- All Books Section -->
 <section>
-    <h3 class="section-title">All Books</h3>
+<h3 class="section-title">
+    {{ request()->query('search') ? 'Search by: ' . request()->query('search') : 'All Books' }}
+</h3>
     <div class="grid">
         @foreach ($allBooks as $book)
             <div class="card">
