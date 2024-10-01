@@ -22,13 +22,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/publish', function () {
+        return view('publish');
+    })->name('publish');
 });
 
 Route::get('/crud', [CrudController::class, 'index'])->name('crud');
 
-Route::get('/publish', function () {
-    return view('publish'); // Assuming you have a Blade view named 'publish.blade.php'
-})->name('publish');
+
 
 // For edit
 Route::put('/books/update', [BookController::class, 'update'])->name('books.update');

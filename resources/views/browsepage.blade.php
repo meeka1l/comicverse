@@ -139,12 +139,20 @@
             <h2>Home</h2>
         </a>
         <h2>|</h2>
-        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <h2>Logout</h2>
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
+        @if (Auth::check())
+            <!-- Show Logout if user is logged in -->
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <h2>Logout</h2>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @else
+            <!-- Show Login if user is not logged in -->
+            <a href="{{ route('login') }}">
+                <h2>Login</h2>
+            </a>
+        @endif
     </div>
 </div>
 
