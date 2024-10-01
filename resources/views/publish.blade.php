@@ -264,7 +264,7 @@
 
         <div>
             <label for="image">Cover Image(PNG/JPEG/JPG/GIF)</label>
-            <input id="image" name="image" type="file" />
+            <input id="image" name="image" type="file" required />
         </div>
 
        
