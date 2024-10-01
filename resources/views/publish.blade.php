@@ -92,7 +92,7 @@
         }
 
         main {
-            max-width: 800px;
+            max-width: 90%;
             margin: 20px auto;
             padding: 20px;
             background-color: white;
@@ -201,6 +201,92 @@
     50% { opacity: 1; }
     100% { opacity: 0; }
 }
+.form-container {
+    max-width: 600px; /* Set a max width for the form */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px; /* Add some padding around the form */
+    background-color: #f9f9f9; /* Light background for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form fields */
+}
+
+.form-group label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Bold labels */
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Padding inside inputs */
+    border: 1px solid #ccc; /* Border around inputs */
+    border-radius: 4px; /* Rounded corners for inputs */
+    font-size: 16px; /* Font size for inputs */
+}
+
+.form-group button {
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Button text color */
+    padding: 10px 15px; /* Padding around button text */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size for button */
+}
+
+.form-group button:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+}
+
+.alert {
+    margin-bottom: 15px; /* Space below alert */
+    color: #ff0000; /* Red text for error messages */
+    background-color: #f8d7da; /* Light red background for alert */
+    padding: 10px; /* Padding inside alert */
+    border: 1px solid #f5c6cb; /* Border for alert */
+    border-radius: 4px; /* Rounded corners for alert */
+}
+.tabs {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    color: black;
+}
+
+.tab-button.active {
+    background: #fff;
+    border-bottom: none; /* Hide bottom border for active tab */
+}
+
+.tab-content {
+    border: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    padding: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content:not(.active) {
+    display: none;
+}
+
+
     </style>
 </head>
 <body>
@@ -226,58 +312,86 @@
     </header>
 
     <main>
+         <!-- Tab Navigation -->
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'publish')">Publish</button>
+        <button class="tab-button" onclick="openTab(event, 'other-works')">Other Works</button>
+    </div>
+    <div id="publish" class="tab-content active">
         <header>
             <h1>Publish Your Work</h1>
             <p>Submit your latest comic or manga to share with the world!</p>
         </header>
-        <div>
+        <div class="form-container">
     <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
         @csrf
+
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-        <div>
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <div class="form-group">
             <label for="title">Title</label>
             <input id="title" name="title" type="text" required />
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4" required></textarea>
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="price">Price</label>
-            <input id="price" name="price" type="number" step="0.01" max="99999" maxlength="" required />
+            <input id="price" name="price" type="number" step="0.01" max="99999" required />
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="stock">Stock</label>
             <input id="stock" name="stock" type="number" max="99999999999" required />
         </div>
 
-        <div>
-            <label for="image">Cover Image(PNG/JPEG/JPG/GIF)</label>
+        <div class="form-group">
+            <label for="image">Cover Image (PNG/JPEG/JPG/GIF)</label>
             <input id="image" name="image" type="file" required />
         </div>
 
-       
-
-        <div>
+        <div class="form-group">
             <button type="submit">Publish</button>
         </div>
     </form>
 </div>
+</div>
+
+<div id="other-works" class="tab-content">
+        <h2>Other Works</h2>
+        <p>Here you can display or manage your other works, comics, or mangas.</p>
+        <!-- Add your content for Other Works here -->
+    </div>
 
            </main>
     <script>
+        function openTab(evt, tabName) {
+    // Hide all tab content
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(content => content.classList.remove('active'));
+
+    // Remove 'active' class from all tab buttons
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(button => button.classList.remove('active'));
+
+    // Show the current tab and set the button to active
+    document.getElementById(tabName).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+
     document.addEventListener("DOMContentLoaded", function() {
+        
         var loadingScreen = document.getElementById('loading-screen');
 
         // Function to show loading screen
