@@ -347,10 +347,10 @@
     <div class="grid">
         @foreach ($trendingBooks as $book)
             <div class="card">
-                <!-- Display the image by encoding the binary data as base64 -->
-                <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->title }}">
-                <h4>{{ $book->title }}</h4>
-                <p>${{ number_format($book->price, 2) }}</p>
+            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+        <h4>{{ $book->title }}</h4>
+        <p>${{ number_format($book->price, 2) }}</p>
+        <p>{{ $book->author }}</p>
             </div>
         @endforeach
     </div>
@@ -362,29 +362,16 @@
     <div class="grid">
         @foreach ($classicBooks as $book)
             <div class="card">
-                <!-- Display the image by encoding the binary data as base64 -->
-                <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->title }}">
-                <h4>{{ $book->title }}</h4>
-                <p>${{ number_format($book->price, 2) }}</p>
+            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+        <h4>{{ $book->title }}</h4>
+        <p>${{ number_format($book->price, 2) }}</p>
+        <p>{{ $book->author }}</p>
             </div>
         @endforeach
     </div>
 </section>
 
-            <!-- All Books Section -->
-<section>
-    <h3 class="section-title">All Books</h3>
-    <div class="grid">
-        @foreach ($allBooks as $book)
-            <div class="card">
-            <!-- Display the image by encoding the binary data as base64 -->
-            <img src="data:image/jpeg;base64,{{ base64_encode($book->image) }}" alt="{{ $book->title }}">   
-            <h4>{{ $book->title }}</h4>
-                <p>${{ number_format($book->price, 2) }}</p>
-            </div>
-        @endforeach
-    </div>
-</section>
+           
         </main>
 
         <footer>

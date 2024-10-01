@@ -233,7 +233,15 @@
         <div>
     <form method="POST" action="{{ route('books.store') }}" enctype="multipart/form-data">
         @csrf
-
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
         <div>
             <label for="title">Title</label>
             <input id="title" name="title" type="text" required />
@@ -255,7 +263,7 @@
         </div>
 
         <div>
-            <label for="image">Cover Image</label>
+            <label for="image">Cover Image(PNG/JPEG/JPG/GIF)</label>
             <input id="image" name="image" type="file" />
         </div>
 
