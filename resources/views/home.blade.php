@@ -441,8 +441,10 @@
                 <div class="text-container">
                     <h4 id="modalBookTitle" class="book-title"></h4>
                     <p id="modalBookPrice" class="book-price"></p>
+                    <strong>Author:</strong>
                     <p id="modalBookAuthor" class="book-author"></p>
                     <p id="modalBookDescription" class="book-description"></p>
+                    <label for="quantity"><strong>Quantity:</strong></label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-input">
                     <input type="hidden" id="bookId" name="book_id" value="">
                 </div>
@@ -487,11 +489,12 @@
     <div class="grid">
         @foreach ($classicBooks as $book)
         <div class="card" onclick="openModal({
+             id: '{{ $book->id }}',
                 image: '{{ asset('storage/' . $book->image) }}',
                 title: '{{ $book->title }}',
                 price: {{ $book->price }},
                 author: '{{ $book->author }}',
-                description: '{{e($book->description) }}'
+                description: '{{ e($book->description)}}'
             })">
                 <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
                 <h4>{{ $book->title }}</h4>
