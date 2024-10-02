@@ -125,5 +125,17 @@ public function storeAdmin(Request $request)
     return redirect()->back()->with('success', 'Book added successfully!');
 }
 
+public function showUserWorks()
+{
+// Get the currently logged-in user ID
+$userId = Auth::id();
+    
+// Retrieve all books where the logged-in user is the author
+$userBooks = Book::where('author_id', $userId)->get();
+
+// Pass the user's books to the publish view
+return view('publish', compact('userBooks'));   
+}
+
 
 }

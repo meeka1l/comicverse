@@ -285,6 +285,37 @@
 .tab-content:not(.active) {
     display: none;
 }
+.grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px,200px));
+                gap: 24px;
+            }
+            .card {
+                background-color: white;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 16px;
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card:hover {
+                transform: scale(1.05); /* Pop out effect */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+            }
+            .card img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 16px;
+            }
+            .card h4 {
+                font-size: 1.25rem;
+                font-weight: bold;
+            }
+            .card p {
+                color: #6b7280;
+            }
 
 
     </style>
@@ -369,9 +400,22 @@
 </div>
 
 <div id="other-works" class="tab-content">
-        <h2>Other Works</h2>
-        <p>Here you can display or manage your other works, comics, or mangas.</p>
-        <!-- Add your content for Other Works here -->
+        <h2>Your Works</h2>
+    
+    @if($userBooks->isEmpty())
+        <p>You have not published any books yet.</p>
+    @else
+    <div class="grid">
+        @foreach($userBooks as $book)
+        <div class="card">
+            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+        <h4>{{ $book->title }}</h4>
+        <p>${{ number_format($book->price, 2) }}</p>
+        <p>{{ $book->author }}</p>
+            </div>
+        @endforeach
+        </div>
+    @endif
     </div>
 
            </main>

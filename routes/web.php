@@ -50,3 +50,7 @@ Route::resource('books', BookController::class);
 Route::resource('users', UserController::class);
 
 Route::get('/browse', [browseController::class, 'index'])->name('browse');
+
+Route::get('/publish', [BookController::class, 'showUserWorks'])->name('publish');
+
+

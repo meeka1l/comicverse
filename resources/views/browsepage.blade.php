@@ -77,7 +77,7 @@
         .search-form input[type="text"] {
             padding: 8px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 20px;
             margin-right: 8px;
             width: 700px; /* Increase the width to make the search bar wider */
         }
