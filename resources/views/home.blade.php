@@ -399,6 +399,7 @@
                         <a href="{{ url('/publish') }}" class="publish-button">
                             Publish
                         </a>
+                        <a href="{{ route('cart.index') }}">MyCart</a>
                         <a href="#"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
@@ -413,6 +414,7 @@
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
+                        
                     @endauth
                 </nav>
                 @endif

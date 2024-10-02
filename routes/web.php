@@ -57,3 +57,7 @@ Route::get('/publish', [BookController::class, 'showUserWorks'])->name('publish'
 // Route to handle adding items to the cart
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+

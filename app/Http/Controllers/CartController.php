@@ -6,6 +6,26 @@ use App\Models\Cart; // Assuming you have a Cart model
 
 class CartController extends Controller
 {
+    public function index(){
+         // Fetch cart items for the authenticated user
+         $cartItems = Cart::with('book') // Assuming there's a relationship with the Book model
+         ->where('user_id', auth()->user()->id)
+         ->get();
+         return view('cart', compact('cartItems'));     
+ 
+    }
+    public function remove($id)
+{
+    $cartItem = Cart::where('id', $id)->where('user_id', auth()->user()->id)->first();
+    
+    if ($cartItem) {
+        $cartItem->delete();
+        return redirect()->route('cart.index')->with('success', 'Item removed from cart.');
+    }
+
+    return redirect()->route('cart.index')->with('error', 'Item not found in cart.');
+}
+
     public function addToCart(Request $request)
     {
         // Get the data from the request
