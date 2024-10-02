@@ -423,25 +423,31 @@
     </form>
 </div>
 </div>
-
 <div id="other-works" class="tab-content">
-        <h2>Your Works</h2>
-    
+    <h2>Your Works</h2>
+
     @if($userBooks->isEmpty())
         <p>You have not published any books yet.</p>
     @else
-    <div class="grid">
-        @foreach($userBooks as $book)
-        <div class="card">
-            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
-        <h4>{{ $book->title }}</h4>
-        <p>${{ number_format($book->price, 2) }}</p>
-        <p>{{ $book->author }}</p>
-            </div>
-        @endforeach
+        <div class="grid">
+            @foreach($userBooks as $book)
+                <div class="card">
+                    <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+                    <h4>{{ $book->title }}</h4>
+                    <p>${{ number_format($book->price, 2) }}</p>
+                    <p>{{ $book->author }}</p>
+                    
+                    <!-- Delete Form -->
+                    <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this book?')" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            @endforeach
         </div>
     @endif
-    </div>
+</div>
 
            </main>
     <script>
