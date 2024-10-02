@@ -378,6 +378,31 @@
         </div>
 
         <div class="form-group">
+        <label for="genre">Genre:</label>
+    <select name="genre" id="genre">
+        <option value="">Select a genre</option>
+        <option value="Action">Action</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Romance">Romance</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Horror">Horror</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Slice of Life">Slice of Life</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Historical">Historical</option>
+        <option value="Sports">Sports</option>
+        <option value="Isekai">Isekai</option>
+        <option value="Seinen">Seinen</option>
+        <option value="Josei">Josei</option>
+        <option value="Superhero">Superhero</option>
+        <option value="Anthology">Anthology</option>
+    </select>
+
+        </div>
+
+        <div class="form-group">
             <label for="price">Price</label>
             <input id="price" name="price" type="number" step="0.01" max="99999" required />
         </div>

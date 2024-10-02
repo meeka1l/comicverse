@@ -45,6 +45,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 Route::post('/books', [BookController::class, 'store'])->name('books.store');
 Route::post('/books/storeAdmin', [BookController::class, 'storeAdmin'])->name('books.storeAdmin');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/books/publish', [BookController::class, 'create'])->name('books.create');
 
 
 Route::resource('books', BookController::class);

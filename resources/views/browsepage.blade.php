@@ -218,6 +218,7 @@
 }
 .orange{
     color: orange;
+    font-family: 'Anton';
 }
         </style>
 </head>
@@ -227,7 +228,7 @@
     <div class="header-container">
     <h2 class="upperheader">ComicVERSE</h2>
     <div class="uppernavigation">
-        <a href="{{route('cart')}}">
+        <a href="{{route('cart.index')}}">
             <h2 class="orange">MyCart</h2>
         </a>
         <h2>|</h2>

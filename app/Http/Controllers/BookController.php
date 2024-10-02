@@ -59,8 +59,13 @@ $book->update([
     return redirect()->back()->with('success', 'Book deleted successfully!');
 }
 
+
 public function store(Request $request)
 {
+    $genres = ['Action', 'Adventure', 'Romance', 'Fantasy', 'Science Fiction', 
+    'Horror', 'Mystery', 'Thriller', 'Slice of Life', 'Comedy', 
+    'Historical', 'Sports', 'Isekai', 'Seinen', 'Josei', 
+    'Superhero', 'Anthology'];
     $validated = $request->validate([
         'title' => 'required|string|max:255',
         'description' => 'required|string',
@@ -69,6 +74,7 @@ public function store(Request $request)
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'trending' => 'sometimes|boolean',
         'classic' => 'sometimes|boolean',
+        'genre' => 'nullable|string|in:' . implode(',', $genres),
     ]);
 
     $imagePath = null;
@@ -87,6 +93,7 @@ public function store(Request $request)
         'image' => $imagePath,
         'trending' => $request->has('trending'),
         'classic' => $request->has('classic'),
+        'genre' => $request->input('genre'),
     ]);
 
     return redirect()->back()->with('success', 'Book added successfully!');
