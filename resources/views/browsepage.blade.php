@@ -62,6 +62,7 @@
             }
             .main-section {
                 padding: 32px;
+                background: linear-gradient(to bottom, white 60%, black);
             }
             .header-search {
             display: flex;
