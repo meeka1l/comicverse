@@ -304,7 +304,7 @@
     <div class="card" onclick="openModal({
              id: '{{ $book->id }}',
                 image: '{{ asset('storage/' . $book->image) }}',
-                title: '{{ $book->title }}',
+                title: '{{ e($book->title) }}',
                 price: {{ $book->price }},
                 author: '{{ $book->author }}',
                 description: '{{ e($book->description)}}'
