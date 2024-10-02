@@ -20,6 +20,6 @@ class CartController extends Controller
         ]);
 
         // Redirect back to the homepage with success message
-        return redirect()->route('home')->with('success', 'Book added to cart!');
+        return redirect()->back()->with('success', 'Book added to cart!');
     }
 }
