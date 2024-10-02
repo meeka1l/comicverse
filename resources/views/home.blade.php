@@ -446,6 +446,7 @@
                     <strong>Author:</strong>
                     <p id="modalBookAuthor" class="book-author"></p>
                     <p id="modalBookDescription" class="book-description"></p>
+                    <p id="modalBookGenre" class="book-genre"></p>
                     <label for="quantity"><strong>Quantity:</strong></label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-input">
                     <input type="hidden" id="bookId" name="book_id" value="">
@@ -474,7 +475,8 @@
                 title: '{{ $book->title }}',
                 price: {{ $book->price }},
                 author: '{{ $book->author }}',
-                description: '{{ e($book->description)}}'
+                description: '{{ e($book->description)}}',
+                 genre: '{{ $book->genre }}'
             })">
                 <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
                 <h4>{{ $book->title }}</h4>
@@ -496,7 +498,8 @@
                 title: '{{ $book->title }}',
                 price: {{ $book->price }},
                 author: '{{ $book->author }}',
-                description: '{{ e($book->description)}}'
+                description: '{{ e($book->description)}}',
+                 genre: '{{ $book->genre }}'
             })">
                 <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
                 <h4>{{ $book->title }}</h4>
@@ -506,6 +509,37 @@
         @endforeach
     </div>
 </section>
+
+<section>
+    <h3 class="section-title">Popular Genre - Horror</h3>
+    <div class="grid">
+        @foreach ($horrorBooks as $book)
+        <div class="card" onclick="openModal({
+                id: '{{ $book->id }}',
+                image: '{{ asset('storage/' . $book->image) }}',
+                title: '{{ e($book->title) }}',
+                price: {{ $book->price }},
+                author: '{{ $book->author }}',
+                description: '{{ e($book->description) }}'
+            })">
+            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+            <h4>{{ $book->title }}</h4>
+            <p>${{ number_format($book->price, 2) }}</p>
+            <p>{{ $book->author }}</p>
+        </div>
+        @endforeach
+    </div>
+</section>
+<br>
+<br>
+<main class="main-section">
+            <div class="banner" style="background-image: url('../../build/images/wsj.jpg');">
+                <div class="banner-content">
+                    <h2>ComicVERSE</h2>
+                    <p>The ultimate hub for comic and manga!</p>
+                    <a href="{{route('browse')}}">Browse All</a>
+                </div>
+            </div>
 
            
         </main>
@@ -547,6 +581,7 @@ function openModal(book) {
     document.getElementById('modalBookPrice').innerText = `$${book.price.toFixed(2)}`;
     document.getElementById('modalBookAuthor').innerText = book.author;
     document.getElementById('modalBookDescription').innerText = book.description;
+    document.getElementById('modalBookGenre').innerText = book.genre;
 
     // Set the book ID in the hidden input
     document.getElementById('bookId').value = book.id;

@@ -242,8 +242,8 @@
     background-color: #f0f0f0;
 }
 .active-genre {
-    color: orange; /* Change the text color to orange */
-    font-weight: bold; /* Optional: make it bold */
+    font-weight: bold; 
+    font-family: 'Anton';
 }
 
         </style>
@@ -354,6 +354,7 @@
                     <strong>Author:</strong>
                     <p id="modalBookAuthor" class="book-author"></p>
                     <p id="modalBookDescription" class="book-description"></p>
+                    <p id="modalBookGenre" class="book-genre"></p>
                     <label for="quantity"><strong>Quantity:</strong></label>
                     <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-input">
                     <input type="hidden" id="bookId" name="book_id" value="">
@@ -385,7 +386,8 @@
                 title: '{{ e($book->title) }}',
                 price: {{ $book->price }},
                 author: '{{ $book->author }}',
-                description: '{{ e($book->description)}}'
+                description: '{{ e($book->description)}}',
+                genre: '{{ $book->genre }}'
             })">
                 <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
                 <h4>{{ $book->title }}</h4>
@@ -406,6 +408,7 @@ function openModal(book) {
     document.getElementById('modalBookPrice').innerText = `$${book.price.toFixed(2)}`;
     document.getElementById('modalBookAuthor').innerText = book.author;
     document.getElementById('modalBookDescription').innerText = book.description;
+    document.getElementById('modalBookGenre').innerText = book.genre;
 
     // Set the book ID in the hidden input
     document.getElementById('bookId').value = book.id;

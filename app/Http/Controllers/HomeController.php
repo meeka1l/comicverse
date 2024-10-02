@@ -12,8 +12,9 @@ class HomeController extends Controller
         $userId = Auth::id();
         $trendingBooks = Book::where('trending', true)->get(); // Fetch trending books
         $classicBooks = Book::where('classic', true)->get(); // Fetch classic books
+        $horrorBooks = Book::where('genre', 'Horror')->get(); 
         $allBooks = Book::all(); // Fetch all books
-        return view('home', compact('userId','trendingBooks', 'allBooks','classicBooks'));     
+        return view('home', compact('trendingBooks', 'allBooks', 'classicBooks', 'horrorBooks'));     
     }
 
     public function store(Request $request)
