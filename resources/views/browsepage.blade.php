@@ -220,6 +220,32 @@
     color: orange;
     font-family: 'Anton';
 }
+.genre-section {
+    margin: 20px 0;
+}
+
+.genre-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.genre-links a {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.genre-links a:hover {
+    background-color: #f0f0f0;
+}
+.active-genre {
+    color: orange; /* Change the text color to orange */
+    font-weight: bold; /* Optional: make it bold */
+}
+
         </style>
 </head>
 <body>
@@ -266,6 +292,50 @@
         </div>
         </div>
         <main class="main-section">
+            <!-- Browse by Genre Section -->
+<section class="genre-section">
+    <h3 class="section-title">Browse by Genre</h3>
+    <div class="genre-links">
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => null]) }}"
+       class="{{ request()->query('genre') === null ? 'active-genre' : '' }}">All</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Action']) }}"
+       class="{{ request()->query('genre') === 'Action' ? 'active-genre' : '' }}">Action</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Adventure']) }}"
+       class="{{ request()->query('genre') === 'Adventure' ? 'active-genre' : '' }}">Adventure</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Romance']) }}"
+       class="{{ request()->query('genre') === 'Romance' ? 'active-genre' : '' }}">Romance</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Fantasy']) }}"
+       class="{{ request()->query('genre') === 'Fantasy' ? 'active-genre' : '' }}">Fantasy</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Science Fiction']) }}"
+       class="{{ request()->query('genre') === 'Science Fiction' ? 'active-genre' : '' }}">Science Fiction</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Horror']) }}"
+       class="{{ request()->query('genre') === 'Horror' ? 'active-genre' : '' }}">Horror</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Mystery']) }}"
+       class="{{ request()->query('genre') === 'Mystery' ? 'active-genre' : '' }}">Mystery</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Thriller']) }}"
+       class="{{ request()->query('genre') === 'Thriller' ? 'active-genre' : '' }}">Thriller</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Slice of Life']) }}"
+       class="{{ request()->query('genre') === 'Slice of Life' ? 'active-genre' : '' }}">Slice of Life</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Comedy']) }}"
+       class="{{ request()->query('genre') === 'Comedy' ? 'active-genre' : '' }}">Comedy</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Historical']) }}"
+       class="{{ request()->query('genre') === 'Historical' ? 'active-genre' : '' }}">Historical</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Sports']) }}"
+       class="{{ request()->query('genre') === 'Sports' ? 'active-genre' : '' }}">Sports</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Isekai']) }}"
+       class="{{ request()->query('genre') === 'Isekai' ? 'active-genre' : '' }}">Isekai</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Seinen']) }}"
+       class="{{ request()->query('genre') === 'Seinen' ? 'active-genre' : '' }}">Seinen</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Josei']) }}"
+       class="{{ request()->query('genre') === 'Josei' ? 'active-genre' : '' }}">Josei</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Superhero']) }}"
+       class="{{ request()->query('genre') === 'Superhero' ? 'active-genre' : '' }}">Superhero</a>
+    <a href="{{ route('browse', ['search' => request()->query('search'), 'genre' => 'Anthology']) }}"
+       class="{{ request()->query('genre') === 'Anthology' ? 'active-genre' : '' }}">Anthology</a>
+</div>
+
+</section>
+
 
 <!-- Book Details Modal -->
 <div id="bookModal" class="modal">
