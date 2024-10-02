@@ -80,6 +80,7 @@ public function store(Request $request)
      Book::create([
         'title' => $request->input('title'),
         'author'=> Auth::user()->name,
+        'author_id'=> Auth::user()->id,
         'description' => $request->input('description'),
         'price' => $request->input('price'),
         'stock' => $request->input('stock'),
