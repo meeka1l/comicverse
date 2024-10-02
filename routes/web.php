@@ -7,6 +7,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\browseController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', function () {
     return view('home');
@@ -53,4 +54,6 @@ Route::get('/browse', [browseController::class, 'index'])->name('browse');
 
 Route::get('/publish', [BookController::class, 'showUserWorks'])->name('publish');
 
+// Route to handle adding items to the cart
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 

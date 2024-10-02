@@ -289,6 +289,94 @@
     50% { opacity: 1; }
     100% { opacity: 0; }
 }
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+    justify-content: center; /* Center modal */
+    align-items: center; /* Center modal */
+    
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 15px; /* Rounded edges */
+    padding: 20px;
+    width: 400px; /* Adjust width as necessary */
+    max-width: 90%; /* Responsive max width */
+    margin-left: 33%;
+    margin-top: 2%;
+    overflow-y: auto; /* Allow vertical scrolling if content is too large */
+}
+.modal-body {
+    display: flex; /* Enable flexbox */
+    align-items: flex-start; /* Align items at the start (top) */
+    text-align: left; /* Align text to the left */
+}
+
+.modal-body img {
+    width: 200px; /* Set a fixed width for the image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between image and text */
+}
+
+.text-container {
+    display: flex; /* Create a flex container */
+    flex-direction: column; /* Stack items vertically */
+}
+
+.text-container h4,
+.text-container p,
+.text-container input {
+    margin: 10px 0; /* Add some vertical spacing */
+}
+
+
+.book-image {
+    width: 300px; /* Set a smaller width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded edges for the image */
+    margin-bottom: 16px; /* Space below the image */
+}
+
+/* Other modal styles */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    cursor: pointer;
+    font-size: 24px; /* Size of the close button */
+}
+.book-description {
+    max-height: 100px; /* Set a fixed height for the description box */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-top: 10px; /* Space above the description */
+}
+.overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit below the modal */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+}
+
+/* Show overlay when modal is open */
+.modal.show + .overlay {
+    display: block; /* Show overlay when modal is active */
+}
+
 
         </style>
     </head>
@@ -339,18 +427,55 @@
                     <a href="{{route('browse')}}">Browse</a>
                 </div>
             </div>
+<!-- Book Details Modal -->
+<div id="bookModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 id="bookModalLabel">Book Details</h5>
+            <button type="button" class="close" onclick="closeModal()">&times;</button>
+        </div>
+        <form id="addToCartForm" action="/add-to-cart" method="POST">
+        @csrf
+            <div class="modal-body">
+                <img id="modalBookImage" src="" alt="Book Cover" class="img-fluid book-image">
+                <div class="text-container">
+                    <h4 id="modalBookTitle" class="book-title"></h4>
+                    <p id="modalBookPrice" class="book-price"></p>
+                    <p id="modalBookAuthor" class="book-author"></p>
+                    <p id="modalBookDescription" class="book-description"></p>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" class="quantity-input">
+                    <input type="hidden" id="bookId" name="book_id" value="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" onclick="closeModal()">Close</button>
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-          
+
+<!-- Overlay -->
+<div id="overlay" class="overlay" onclick="closeModal()"></div>
+
    <!-- Trending Section -->
-<section>
+   <section>
     <h3 class="section-title">Trending</h3>
     <div class="grid">
         @foreach ($trendingBooks as $book)
-            <div class="card">
-            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
-        <h4>{{ $book->title }}</h4>
-        <p>${{ number_format($book->price, 2) }}</p>
-        <p>{{ $book->author }}</p>
+            <div class="card" onclick="openModal({
+             id: '{{ $book->id }}',
+                image: '{{ asset('storage/' . $book->image) }}',
+                title: '{{ $book->title }}',
+                price: {{ $book->price }},
+                author: '{{ $book->author }}',
+                description: '{{ e($book->description)}}'
+            })">
+                <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+                <h4>{{ $book->title }}</h4>
+                <p>${{ number_format($book->price, 2) }}</p>
+                <p>{{ $book->author }}</p>
             </div>
         @endforeach
     </div>
@@ -361,11 +486,17 @@
     <h3 class="section-title">Classics</h3>
     <div class="grid">
         @foreach ($classicBooks as $book)
-            <div class="card">
-            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
-        <h4>{{ $book->title }}</h4>
-        <p>${{ number_format($book->price, 2) }}</p>
-        <p>{{ $book->author }}</p>
+        <div class="card" onclick="openModal({
+                image: '{{ asset('storage/' . $book->image) }}',
+                title: '{{ $book->title }}',
+                price: {{ $book->price }},
+                author: '{{ $book->author }}',
+                description: '{{e($book->description) }}'
+            })">
+                <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+                <h4>{{ $book->title }}</h4>
+                <p>${{ number_format($book->price, 2) }}</p>
+                <p>{{ $book->author }}</p>
             </div>
         @endforeach
     </div>
@@ -403,7 +534,34 @@
             </div>
         </footer>
         <script>
+            
+        // Function to open the modal
+function openModal(book) {
+    document.getElementById('modalBookImage').src = book.image;
+    document.getElementById('modalBookTitle').innerText = book.title;
+    document.getElementById('modalBookPrice').innerText = `$${book.price.toFixed(2)}`;
+    document.getElementById('modalBookAuthor').innerText = book.author;
+    document.getElementById('modalBookDescription').innerText = book.description;
+
+    // Set the book ID in the hidden input
+    document.getElementById('bookId').value = book.id;
+    
+
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('bookModal').style.display = 'block';
+}
+
+
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('bookModal').style.display = 'none';
+}
+
+
     document.addEventListener("DOMContentLoaded", function() {
+
         var loadingScreen = document.getElementById('loading-screen');
 
         // Function to show loading screen
