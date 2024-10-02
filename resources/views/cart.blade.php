@@ -99,6 +99,9 @@
             return $item->book->price * $item->quantity;
         }), 2) ?></h4>
     </div>
+    <a href="{{ route('checkout') }}" class="btn btn-success">Proceed to Checkout</a>
+
+
 <?php endif; ?>
 
 </body>
