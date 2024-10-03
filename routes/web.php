@@ -55,12 +55,12 @@ Route::resource('users', UserController::class);
 Route::get('/browse', [browseController::class, 'index'])->name('browse');
 
 Route::get('/publish', [BookController::class, 'showUserWorks'])->name('publish');
-
 // Route to handle adding items to the cart
-Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add')->middleware('auth');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('auth');
+Route::delete('/cart/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('auth');
+
 
 Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
 Route::get('/checkout', [CheckoutController::class, 'showCheckout'])->name('checkout');

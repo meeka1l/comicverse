@@ -1,4 +1,13 @@
 <x-app-layout>
+<style>
+    .description-container {
+        max-height: 50px; /* Adjust the height as needed */
+        overflow-y: auto;
+        width: 150px; /* Optional: set a width if you want to control the size */
+        white-space: normal;
+    }
+</style>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Manage') }}
@@ -79,7 +88,11 @@
                             <tr>
                                 <td class="px-6 py-4 text-sm font-medium text-gray-900">{{ $book->title }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-500">{{ $book->author }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-500">{{ $book->description }}</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">
+                                <div class="description-container">
+                                {{ $book->description }}
+                                </div>
+                            </td>
                                 <td class="px-6 py-4 text-sm text-gray-500">{{ $book->price }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-500">{{ $book->stock }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-500">{{ $book->trending ? 'Yes' : 'No' }}</td>

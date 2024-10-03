@@ -414,8 +414,14 @@
 
         <div class="form-group">
             <label for="image">Cover Image (PNG/JPEG/JPG/GIF)</label>
-            <input id="image" name="image" type="file" required />
+            <input id="image" name="image" type="file" required onchange="previewImage(event)" />
         </div>
+
+         <!-- Image Preview -->
+    <div class="form-group">
+        <label>Image Preview</label>
+        <img id="imagePreview" src="" alt="Image Preview" style="max-width: 300px; display: none;" />
+    </div>
 
         <div class="form-group">
             <button type="submit">Publish</button>
@@ -451,6 +457,15 @@
 
            </main>
     <script>
+        function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = 'block';
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
         function openTab(evt, tabName) {
     // Hide all tab content
     const tabContents = document.querySelectorAll('.tab-content');
