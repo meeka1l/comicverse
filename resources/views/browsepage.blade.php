@@ -64,6 +64,9 @@
                 padding: 32px;
                 background: linear-gradient(to bottom, white 60%, black);
             }
+            .publishers{
+                padding:32px;
+            }
             .header-search {
             display: flex;
             justify-content: space-between;
@@ -245,6 +248,61 @@
     font-weight: bold; 
     font-family: 'Anton';
 }
+.publisherheader{
+    font-family: 'Anton';
+    font-size: 3em;
+    color: white;
+}
+.DCsection {
+    position: relative; /* Allows for positioning of the overlay */
+    background-image: url('../../build/images/dcgif.gif');
+    padding: 2%;
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the background image */
+    margin-bottom: 2%;
+}
+
+.DCsection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Translucent black overlay */
+    z-index: 1; /* Places the overlay above the background image */
+}
+
+.DCsection > * {
+    position: relative; /* Ensures content appears above the overlay */
+    z-index: 2; /* Keeps text and elements above the overlay */
+}
+
+.WSJsection {
+    position: relative; /* Allows for positioning of the overlay */
+    background-image: url('../../build/images/narutogif.gif');
+    padding: 2%;
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the background image */
+}
+
+.WSJsection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Translucent black overlay */
+    z-index: 1; /* Places the overlay above the background image */
+}
+
+.WSJsection > * {
+    position: relative; /* Ensures content appears above the overlay */
+    z-index: 2; /* Keeps text and elements above the overlay */
+}
 
         </style>
 </head>
@@ -291,7 +349,64 @@
             </form>
         </div>
         </div>
-        <main class="main-section">
+        <main>
+        <section class="publishers">
+<h3 class="section-title">
+        Popular Publishers
+    </h3>
+ <!-- Popular publishers section -->
+ <section class="DCsection">
+    
+    <h3 class="publisherheader">DC Comics</h3>
+    <div class="grid">
+        @foreach ($allBooks->filter(function($book) {
+            return str_contains(strtolower($book->author), 'dc');
+        }) as $book)
+        <div class="card" onclick="openModal({
+                 id: '{{ $book->id }}',
+                    image: '{{ asset('storage/' . $book->image) }}',
+                    title: '{{ e($book->title) }}',
+                    price: {{ $book->price }},
+                    author: '{{ $book->author }}',
+                    description: '{{ e($book->description) }}',
+                    genre: '{{ $book->genre }}'
+                })">
+                    <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+                    <h4>{{ $book->title }}</h4>
+                    <p>${{ number_format($book->price, 2) }}</p>
+                    <p>{{ $book->author }}</p>
+                </div>
+        @endforeach
+    </div>
+</section>
+
+<section class="WSJsection">
+    
+    <h3 class="publisherheader">Shonen Jump</h3>
+    <div class="grid">
+        @foreach ($allBooks->filter(function($book) {
+            return str_contains(strtolower($book->author), 'shonen');
+        }) as $book)
+        <div class="card" onclick="openModal({
+                 id: '{{ $book->id }}',
+                    image: '{{ asset('storage/' . $book->image) }}',
+                    title: '{{ e($book->title) }}',
+                    price: {{ $book->price }},
+                    author: '{{ $book->author }}',
+                    description: '{{ e($book->description) }}',
+                    genre: '{{ $book->genre }}'
+                })">
+                    <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->title }}">
+                    <h4>{{ $book->title }}</h4>
+                    <p>${{ number_format($book->price, 2) }}</p>
+                    <p>{{ $book->author }}</p>
+                </div>
+        @endforeach
+    </div>
+</section>
+
+</section>
+            <section class="main-section">
             <!-- Browse by Genre Section -->
 <section class="genre-section">
     <h3 class="section-title">Browse by Genre</h3>
@@ -398,6 +513,8 @@
 
     </div>
 </section>
+</section>
+
 </main>
 <script>
             
